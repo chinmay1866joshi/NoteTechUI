@@ -1,3 +1,180 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@layer base {
+  :root {
+    --color-bg-base: #060709;
+    --color-silver-light: #f8fafc;
+    --color-silver-mid: #cbd5e1;
+    --color-silver-dark: #64748b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #050507;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism and Silver Gradient Utilities */
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 50px -10px rgba(0, 0, 0, 0.8),
+    0 10px 20px -5px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.glass-input {
+  background: rgba(10, 11, 15, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-input:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(14, 16, 22, 0.75);
+}
+
+.glass-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.06);
+  background: rgba(18, 20, 28, 0.85);
+  outline: none;
+}
+
+.silver-gradient-text {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 45%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.silver-subtle-text {
+  background: linear-gradient(180deg, #e2e8f0 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-silver-metallic {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #e2e8f0 30%,
+    #cbd5e1 60%,
+    #ffffff 100%
+  );
+  color: #09090b;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow:
+    0 0 25px -4px rgba(255, 255, 255, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.btn-silver-metallic::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.7) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-silver-metallic:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-silver-metallic:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 35px -2px rgba(255, 255, 255, 0.45),
+    0 6px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+.btn-silver-metallic:active {
+  transform: translateY(1px);
+}
+
+/* Glass interactive secondary buttons */
+.btn-glass-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.btn-glass-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Metallic badge pill */
+.silver-pill {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Ambient background silver glow */
+.ambient-silver-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  pointer-events: none;
+  opacity: 0.14;
+}
+
+/* Shimmer animation */
+@keyframes silverShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-silver-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: silverShimmer 4s infinite linear;
+}
